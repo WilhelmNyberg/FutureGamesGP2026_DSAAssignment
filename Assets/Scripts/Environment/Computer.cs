@@ -1,4 +1,5 @@
 ﻿using Environment.Tasks;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Environment {
@@ -6,8 +7,10 @@ namespace Environment {
         [SerializeField]
         private Task testTask = null; // Put your stack/queue here :)
 
+        [SerializeField] private Queue<Task> taskQueue = new();
+
         public void OnInteract() {
-            testTask.Execute();
+            taskQueue.Dequeue().Execute();
         }
     }
 }
