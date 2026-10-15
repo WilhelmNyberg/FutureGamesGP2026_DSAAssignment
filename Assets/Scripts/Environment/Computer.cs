@@ -1,16 +1,17 @@
 ﻿using Environment.Tasks;
-using System.Collections.Generic;
+using Custom.Queue;
 using UnityEngine;
 
 namespace Environment {
     public class Computer : MonoBehaviour, IInteractable {
-        [SerializeField]
-        private Task testTask = null; // Put your stack/queue here :)
 
         [SerializeField] private Queue<Task> taskQueue = new();
 
         public void OnInteract() {
-            taskQueue.Dequeue().Execute();
+            if(taskQueue.Count == 0) return;
+            Task currentTask = taskQueue.Dequeue();
+            Debug.Log($"Executed task: {currentTask.name}");
+            currentTask.Execute();
         }
     }
 }
