@@ -30,7 +30,7 @@ namespace Custom.Queue {
             queue.RemoveAt(0);
             return item;
         }
-        public T Dequeue(int index) {
+        public T Remove(int index) {
             if(queue.Count == 0||index < 0 || index > queue.Count-1) return default(T);
             T item = queue[index];
             queue.RemoveAt(index);
