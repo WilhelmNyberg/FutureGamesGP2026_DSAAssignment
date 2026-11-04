@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using static Employees;
+using static UnityEngine.Rendering.DebugUI;
 
 namespace Sort {
     public class Sorting
@@ -53,6 +54,59 @@ namespace Sort {
                 array[index] = temp;
                 Heapify(array, bigIndex, maxValue);
             }
+        }
+    }
+}
+
+namespace Search {
+    public static class BinarySearch {
+        public static int SearchSingleValue(Employee[] array, DateTime value, int size/* size = -1: lowest index; size = 0: first index it can find; size = 1: highest index;*/) {
+            int lowIndex = 0;
+            int highIndex = array.Length - 1;
+            int median = highIndex / 2;
+            int loops = 0;
+
+            while(lowIndex < highIndex) {
+                loops++;
+                if(loops >= array.Length) break;
+                Debug.Log("Loop: " + loops);
+                Debug.Log("Median:" + median);
+                if(DateTime.Compare(value, array[median].lastEntrance) == 0) {
+                    if(size != 0) {
+                        while (array[median].lastEntrance == array[median + size].lastEntrance) {
+                            median += size;
+                            if(median <= 0) {
+                                median = 0;
+                                break;
+                            } else if(median >= array.Length - 1) {
+                                median = array.Length - 1;
+                                break;
+                            }
+                        }
+                    }
+                    return median;
+                } 
+
+                if(value < array[median].lastEntrance) highIndex = median - 1;
+                else lowIndex = median + 1;
+
+                median += DateTime.Compare(value, array[median].lastEntrance) * (highIndex - lowIndex) / 2;
+            }
+
+            return -1;
+        }
+
+        public static Employee[] SearchValuesInRange(Employee[] array, DateTime lowValue, DateTime highValue) {
+            int lowIndex = (SearchSingleValue(array, lowValue, -1) > -1) ? SearchSingleValue(array, lowValue, -1) : 0;
+            int highIndex = (SearchSingleValue(array, highValue, 1) > -1) ? SearchSingleValue(array, highValue, 1) : 0;
+
+            Employee[] newArray = new Employee[highIndex - lowIndex];
+
+            for (int i = 0; i < newArray.Length; i++) {
+                newArray[i] = array[lowIndex + i]; 
+            }
+
+            return newArray;
         }
     }
 }
