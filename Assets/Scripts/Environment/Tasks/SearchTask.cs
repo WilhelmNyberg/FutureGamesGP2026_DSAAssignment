@@ -2,6 +2,7 @@ using Environment.Tasks;
 using System;
 using UnityEngine;
 using Search;
+using System.Collections.Generic;
 
 [CreateAssetMenu(fileName = "SearchTask", menuName = "Search In Json")]
 public class SearchTask : Task {
