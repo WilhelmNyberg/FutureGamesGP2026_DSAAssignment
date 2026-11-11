@@ -87,7 +87,7 @@ namespace Search {
                     median = highIndex - (highIndex - lowIndex) / 2;
                 }
 
-                if(DateTime.Compare(value, array[median].lastEntrance) == 0) {
+                if(value == array[median].lastEntrance) {
                     if(size != 0) {
                         while (array[median].lastEntrance == array[median + size].lastEntrance) {
                             median += size;

@@ -1,3 +1,4 @@
+using StoringData;
 using System;
 using UnityEngine;
 
@@ -18,5 +19,7 @@ public class Employees : ScriptableObject
         public Employee[] employees;
     }
     public Employee[] workers;
+    [Header("Tree")]
+    [SerializeField]public BinaryTree workersTree;
 
 }

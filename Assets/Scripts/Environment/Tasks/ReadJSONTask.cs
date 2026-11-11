@@ -4,6 +4,7 @@ using System;
 using System.Text.Json;
 using System.IO;
 using UnityEngine;
+using StoringData;
 
 [CreateAssetMenu(fileName = "Read JSON", menuName = "Tasks")]
 public class ReadJSONTask : Task
@@ -21,6 +22,8 @@ public class ReadJSONTask : Task
             e.lastEntrance = DateTime.Parse(e.lastEntranceInEngineRoom);
             e.lastExit = DateTime.Parse(e.lastExitFromEngineRoom);
         }
+
+        employeeData.workersTree = new BinaryTree(employeeData.workers);
 
         Sort.Sorting.HeapSort(employeeData.workers);
     }
