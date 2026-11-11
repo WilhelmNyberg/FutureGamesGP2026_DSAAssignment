@@ -59,6 +59,12 @@ namespace Sort {
 }
 
 namespace Search {
+    public static class LinearSearch {
+        public static int SearchSingleValue(Employee[] array, DateTime value) {
+            for(int i = 0; i < array.Length; i++) if(array[i].lastEntrance == value) return i;
+            return -1;
+        }
+    }
     public static class BinarySearch {
         public static int SearchSingleValue(Employee[] array, DateTime value, int size/* size = -1: lowest index; size = 0: first index it can find; size = 1: highest index;*/) {
         
