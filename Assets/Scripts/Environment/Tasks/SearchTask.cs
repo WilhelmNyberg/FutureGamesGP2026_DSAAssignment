@@ -1,8 +1,9 @@
 using Environment.Tasks;
-using System;
-using UnityEngine;
 using Search;
+using System;
 using System.Collections.Generic;
+using UnityEngine;
+using static Employees;
 
 [CreateAssetMenu(fileName = "SearchTask", menuName = "Search In Json")]
 public class SearchTask : Task {
@@ -36,7 +37,7 @@ public class SearchTask : Task {
         
         time.Reset();
         time.Start();*/
-        Employees.Employee[] employees = employeeData.workersTree.SearchRange(new DateTime(2234, 8, 3, 03, 21, 18), new DateTime(2234, 8, 5, 12, 22, 20));
+        Employees.Employee[] employees = employeeData.workersTree.SearchRange(new DateTime(2234, 8, 9, 22, 0, 0), new DateTime(2234, 8, 9, 23, 0, 0));
         time.Stop();
         Debug.Log($"Range Search in tree Complete");
         Debug.Log($"The Employees are:"); 
@@ -45,14 +46,14 @@ public class SearchTask : Task {
         }
         Debug.Log($"Ticks elapsed:{time.ElapsedTicks}");
 
-
-        /*Employees.Employee[] workersInRange = BinarySearch.SearchValuesInRange(employeeData.workers, new DateTime(1970, 1, 1, 0, 0, 1), new DateTime(2234, 8, 6, 17, 19, 8));
+        time.Reset();
+        time.Start();
+        Employees.Employee[] workersInRange = BinarySearch.SearchValuesInRange(employeeData.workers, new DateTime(2234, 8, 9, 22, 0, 0), new DateTime(2234, 8, 9, 23, 0, 0));
         time.Stop();
         Debug.Log($"Range found");
         Debug.Log($"Ticks elapsed:{time.ElapsedTicks}");
-        Debug.Log($"Amount of Employees: {workersInRange.Length}");
         foreach (Employees.Employee worker in workersInRange) {
-            Debug.Log($"Employee : {worker.name}");
-        }*/
+            Debug.Log(worker.name + " - " + worker.lastEntranceInEngineRoom);
+        }
     }
 }

@@ -13,7 +13,7 @@ public class ReadJSONTask : Task
     [SerializeField] Employees employeeData;
 
     public override void Execute() {
-        if(JSONData == null) return;
+        if(JSONData == null) { Debug.Log("No JSON Data"); return; }
         string json = JSONData.text;
         employeeData.workers = JsonUtility.FromJson<Employees.EmployeeArray>(json).employees;
         //employeeData.StringifiedToEmployee(temp);
